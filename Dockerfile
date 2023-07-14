@@ -1,4 +1,4 @@
-FROM node:18-alpine
+FROM outoforbitdev/node:1.0.1
 
 RUN apk update \
     && apk add git docker
