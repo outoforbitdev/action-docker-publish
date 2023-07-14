@@ -16,3 +16,5 @@ docker build -t $tag .
 docker build -t $sha_tag .
 docker image push $tag
 docker image push $sha_tag
+
+echo "### Published tags: $tag; $sha_tag" >> $GITHUB_STEP_SUMMARY  
