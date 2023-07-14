@@ -8,10 +8,8 @@ tag="$3:$4"
 sha=$(git rev-parse --short HEAD)
 sha_tag="$tag--$sha"
 
-EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
-echo "tag=\"$tag\"<<$EOF" >> $GITHUB_OUTPUT
-echo "sha-tag=\"$sha_tag\"" >> $GITHUB_OUTPUT
-echo "$EOF" >> $GITHUB_OUTPUT
+echo "tag=$tag" >> $GITHUB_OUTPUT
+echo "sha-tag=$sha_tag" >> $GITHUB_OUTPUT
 
 docker login -u $user -p $token
 docker build -t $tag .
