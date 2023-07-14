@@ -1,7 +1,7 @@
 FROM node:18-alpine
 
 RUN apk update \
-    && apk add docker
+    && apk add git docker
 
 COPY entrypoint.sh /entrypoint.sh
 
