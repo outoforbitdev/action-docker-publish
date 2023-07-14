@@ -1,0 +1,30 @@
+name: "action-semantic-release"
+description: "Automatically release a new version on GitHub"
+inputs:
+  docker-username:
+    description: "The username for the docker account used to publish"
+    required: true
+    default: "default"
+  docker-token:
+    description: "The token for the docker account used to publish"
+    required: true
+    default: "default"
+  image-name:
+    description: "The name (repository) of the image being published"
+    required: true
+    default: "default"
+  image-tag:
+    description: "The tag of the image being published"
+    required: true
+    default: "latest"
+outputs:
+  example-output:
+    description: "This is just an example output"
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.docker-username }}
+    - ${{ inputs.docker-token }}
+    - ${{ inputs.image-name }}
+    - ${{ inputs.image-tag }}
