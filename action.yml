@@ -18,8 +18,10 @@ inputs:
     required: true
     default: "latest"
 outputs:
-  example-output:
-    description: "This is just an example output"
+  tag:
+    description: "The tag that was published"
+  sha-tag:
+    description: "The sha-specific tag that was published"
 runs:
   using: 'docker'
   image: 'Dockerfile'
