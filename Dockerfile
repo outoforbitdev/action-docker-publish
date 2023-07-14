@@ -1,4 +1,4 @@
-FROM outoforbitdev/node:1.0.1
+FROM outoforbitdev/node:1.0.2
 
 RUN apk update \
     && apk add git docker
