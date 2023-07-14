@@ -1,5 +1,5 @@
 name: Release
-run-name: ${{ github.actor }} is creating a release
+run-name: Releasing
 on:
   push:
     branches: [main]
