@@ -1,10 +1,14 @@
-name: Release
-run-name: Releasing
+name: Release Action
+permissions: read-all
 on:
   push:
-    branches: [main]
+    branches:
+      - main
+      - beta
+      - dev
+      - staging
 jobs:
-  Release:
+  semantic-release:
     runs-on: ubuntu-latest
     name: Semantic Release
     steps:
@@ -15,5 +19,6 @@ jobs:
         id: semanticrelease
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
+          dry-run: true
       - name: Get the output time
         run: echo "The time was ${{ steps.semanticrelease.outputs.time}}"
