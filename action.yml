@@ -49,11 +49,11 @@ runs:
       run: docker build -t latest .
       shell: bash
     - name: Push short tag
-      if: ${{ inputs.dry-run == false )}}
+      if: ${{ inputs.dry-run == false }}
       run: docker image push ${{inputs.image-name}}:${{inputs.image-tag}}
       shell: bash
     - name: Push sha tag
-      if: ${{ inputs.dry-run == false )}}
+      if: ${{ inputs.dry-run == false }}
       run: docker image push ${{inputs.image-name}}:${{inputs.image-tag}}--$(git rev-parse --short HEAD)
       shell: bash
     - name: echo publish-latest
