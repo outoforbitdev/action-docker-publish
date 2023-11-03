@@ -1,4 +1,4 @@
-name: Test Docker Image
+name: Test Release
 permissions: read-all
 on:
   pull_request:
@@ -24,7 +24,7 @@ jobs:
         with:
           persist-credentials: false
       - name: Semantic Release
-        uses: outoforbitdev/action-semantic-release@v1.3.3
+        uses: outoforbitdev/action-semantic-release@v1.3.5
         id: semanticrelease
         with:
           github-token: ${{ secrets.RELEASE_TOKEN }}
