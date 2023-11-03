@@ -1,3 +1,10 @@
+# [1.2.0-staging.6](https://github.com/outoforbitdev/action-docker-publish/compare/v1.2.0-staging.5...v1.2.0-staging.6) (2023-11-03)
+
+
+### Bug Fixes
+
+* empty commit to bump version ([#22](https://github.com/outoforbitdev/action-docker-publish/issues/22)) ([522d8e3](https://github.com/outoforbitdev/action-docker-publish/commit/522d8e3b88f79ca5ae99431ac1ac1c9060468ff1))
+
 # [1.2.0-staging.5](https://github.com/outoforbitdev/action-docker-publish/compare/v1.2.0-staging.4...v1.2.0-staging.5) (2023-11-03)
 
 
