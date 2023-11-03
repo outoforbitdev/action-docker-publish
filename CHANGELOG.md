@@ -1,3 +1,10 @@
+# [1.2.0-staging.5](https://github.com/outoforbitdev/action-docker-publish/compare/v1.2.0-staging.4...v1.2.0-staging.5) (2023-11-03)
+
+
+### Bug Fixes
+
+* specify shell for docker login step ([#20](https://github.com/outoforbitdev/action-docker-publish/issues/20)) ([8430c33](https://github.com/outoforbitdev/action-docker-publish/commit/8430c33fad3a576e2194ca4f4a133f20c44cdac6))
+
 # [1.2.0-staging.4](https://github.com/outoforbitdev/action-docker-publish/compare/v1.2.0-staging.3...v1.2.0-staging.4) (2023-11-03)
 
 
