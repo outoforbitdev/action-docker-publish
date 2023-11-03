@@ -1,3 +1,10 @@
+# [1.2.0-staging.2](https://github.com/outoforbitdev/action-docker-publish/compare/v1.2.0-staging.1...v1.2.0-staging.2) (2023-11-03)
+
+
+### Features
+
+* add dry run flag ([#17](https://github.com/outoforbitdev/action-docker-publish/issues/17)) ([8c8024c](https://github.com/outoforbitdev/action-docker-publish/commit/8c8024cab183c5a183ad2572cecf77b63d2c5463))
+
 # [1.2.0-staging.1](https://github.com/outoforbitdev/action-docker-publish/compare/v1.1.2...v1.2.0-staging.1) (2023-11-03)
 
 
