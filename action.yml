@@ -20,11 +20,11 @@ inputs:
   dry-run:
     description: "Flag for whether to actually publish the image"
     required: false
-    default: false
+    default: ${{ false }}
   publish-latest:
     description: "Flag for whether to publish the image with the 'latest' flag"
     required: false
-    default: false
+    default: ${{ false }}
 outputs:
   tag:
     description: "The tag that was published"
