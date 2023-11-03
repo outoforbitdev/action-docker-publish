@@ -31,7 +31,7 @@ GitHub Action for publishing a Docker image.
 * `image-name`: Required. The name (repository) of the image being published
 * `image-tag`: Required. The tag of the image being published
 * `dry-run`: Optional. Flag for whether to actually publish the image. Defaults to false
-* `latest`: Optional. Flag for whether to publish the image with the `latest` flag
+* `publish-latest`: Optional. Flag for whether to publish the image with the `latest` flag
 
 ### Example
 ```
