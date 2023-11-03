@@ -12,16 +12,20 @@ on:
       - dev
       - staging
 jobs:
-  test-docker-image:
+  semantic-release:
     runs-on: ubuntu-latest
-    name: Test Docker Image
+    name: Test Release
+    outputs:
+      versionReleased: ${{steps.semanticrelease.outputs.version-released}}
+      version: ${{steps.semanticrelease.outputs.next-version}}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Test Docker Image
-        uses: outoforbitdev/action-docker-test@v1.0.0-staging.1
-        id: dockertest
         with:
-          test-command: "sh ./test.sh"
-      - name: Output
-        run: echo ${{steps.dockertest.outputs.success}}
+          persist-credentials: false
+      - name: Semantic Release
+        uses: outoforbitdev/action-semantic-release@v1.3.3
+        id: semanticrelease
+        with:
+          github-token: ${{ secrets.RELEASE_TOKEN }}
+          dry-run: true

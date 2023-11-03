@@ -10,15 +10,17 @@ on:
 jobs:
   semantic-release:
     runs-on: ubuntu-latest
-    name: Semantic Release
+    name: Publish Release
+    outputs:
+      versionReleased: ${{steps.semanticrelease.outputs.version-released}}
+      version: ${{steps.semanticrelease.outputs.next-version}}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          persist-credentials: false
       - name: Semantic Release
-        uses: outoforbitdev/action-semantic-release@v1.3.5
+        uses: outoforbitdev/action-semantic-release@v1.3.3
         id: semanticrelease
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          dry-run: true
-      - name: Get the output time
-        run: echo "The time was ${{ steps.semanticrelease.outputs.time}}"
+          github-token: ${{ secrets.RELEASE_TOKEN }}
