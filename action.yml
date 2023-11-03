@@ -17,6 +17,10 @@ inputs:
     description: "The tag of the image being published"
     required: true
     default: "latest"
+  dry-run:
+    description: "Flag for whether to actually publish the image"
+    required: false
+    default: false
 outputs:
   tag:
     description: "The tag that was published"
@@ -36,9 +40,11 @@ runs:
       run: docker build -t ${{inputs.image-name}}:${{inputs.image-tag}}--$(git rev-parse --short HEAD) .
       shell: bash
     - name: Push short tag
+      if: ${{ ! inputs.dry-run}}
       run: docker image push ${{inputs.image-name}}:${{inputs.image-tag}}
       shell: bash
     - name: Push sha tag
+      if: ${{ ! inputs.dry-run}}
       run: docker image push ${{inputs.image-name}}:${{inputs.image-tag}}--$(git rev-parse --short HEAD)
       shell: bash
     - name: Set output
