@@ -1,3 +1,10 @@
+# [1.2.0-staging.3](https://github.com/outoforbitdev/action-docker-publish/compare/v1.2.0-staging.2...v1.2.0-staging.3) (2023-11-03)
+
+
+### Features
+
+* add latest flag ([#18](https://github.com/outoforbitdev/action-docker-publish/issues/18)) ([03aa506](https://github.com/outoforbitdev/action-docker-publish/commit/03aa506a8b0da15e0a0f3b6a19a1fb27a6840189))
+
 # [1.2.0-staging.2](https://github.com/outoforbitdev/action-docker-publish/compare/v1.2.0-staging.1...v1.2.0-staging.2) (2023-11-03)
 
 
