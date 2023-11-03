@@ -60,7 +60,3 @@ runs:
       if: ${{ inputs.publish-latest }}
       run: docker image push latest
       shell: bash
-    - name: Set output
-      id: set-output
-      run: echo "### Published tags: $tag; $sha_tag" >> $GITHUB_STEP_SUMMARY
-      shell: bash
