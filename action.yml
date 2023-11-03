@@ -39,7 +39,7 @@ runs:
       run: docker image push ${{inputs.image-name}}:${{inputs.image-tag}}
       shell: bash
     - name: Push sha tag
-      run: docker image push ${{inputs.image-name}}:${{inputs.image-tag}}
+      run: docker image push ${{inputs.image-name}}:${{inputs.image-tag}}--$(git rev-parse --short HEAD)
       shell: bash
     - name: Set output
       id: set-output
