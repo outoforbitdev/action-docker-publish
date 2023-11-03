@@ -57,7 +57,7 @@ runs:
       run: docker image push ${{inputs.image-name}}:${{inputs.image-tag}}--$(git rev-parse --short HEAD)
       shell: bash
     - name: echo publish-latest
-      run: echo ${{ inputs.publish-latest }}
+      run: echo ${{ inputs.publish-latest == true }}
       shell: bash
     - name: Push latest tag
       if: ${{ inputs.publish-latest == true }}
