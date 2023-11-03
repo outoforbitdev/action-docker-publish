@@ -1,3 +1,10 @@
+# [1.2.0-staging.1](https://github.com/outoforbitdev/action-docker-publish/compare/v1.1.2...v1.2.0-staging.1) (2023-11-03)
+
+
+### Features
+
+* convert to composite action ([#16](https://github.com/outoforbitdev/action-docker-publish/issues/16)) ([8530228](https://github.com/outoforbitdev/action-docker-publish/commit/8530228d7a36efd0b3b5ddb5e52b1314cd0ba139))
+
 ## [1.1.2](https://github.com/outoforbitdev/action-docker-publish/compare/v1.1.1...v1.1.2) (2023-07-17)
 
 
