@@ -1,3 +1,10 @@
+# [1.2.0-staging.4](https://github.com/outoforbitdev/action-docker-publish/compare/v1.2.0-staging.3...v1.2.0-staging.4) (2023-11-03)
+
+
+### Bug Fixes
+
+* correct input syntax ([#19](https://github.com/outoforbitdev/action-docker-publish/issues/19)) ([85fad93](https://github.com/outoforbitdev/action-docker-publish/commit/85fad9316c11a99ea8d3db4c04cfd73fac589d0a))
+
 # [1.2.0-staging.3](https://github.com/outoforbitdev/action-docker-publish/compare/v1.2.0-staging.2...v1.2.0-staging.3) (2023-11-03)
 
 
