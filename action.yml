@@ -34,11 +34,16 @@ runs:
     - name: Docker login
       run: docker login -u ${{inputs.docker-username}} -p ${{inputs.docker-token}}
       shell: bash
+    - name: Set short tag
+      run: export SHORT_TAG=${{inputs.docker-username}}/${{inputs.image-name}}:${{inputs.image-tag}}
+      shell: bash
+    - name: Set sha tag
+      run: export SHA_TAG='${SHORT_TAG}--$(git rev-parse --short HEAD)'
     - name: Build short tag
-      run: docker build -t ${{inputs.image-name}}:${{inputs.image-tag}} .
+      run: docker build -t $SHORT_TAG .
       shell: bash
     - name: Build sha tag
-      run: docker build -t ${{inputs.image-name}}:${{inputs.image-tag}}--$(git rev-parse --short HEAD) .
+      run: docker build -t $SHA_TAG .
       shell: bash
     - name: Build latest tag
       if: ${{ inputs.publish-latest == 'true' }}
@@ -46,11 +51,11 @@ runs:
       shell: bash
     - name: Push short tag
       if: ${{ inputs.dry-run == 'false' }}
-      run: docker image push ${{inputs.image-name}}:${{inputs.image-tag}}
+      run: docker image push $SHORT_TAG
       shell: bash
     - name: Push sha tag
       if: ${{ inputs.dry-run == 'false' }}
-      run: docker image push ${{inputs.image-name}}:${{inputs.image-tag}}--$(git rev-parse --short HEAD)
+      run: docker image push $SHA_TAG
       shell: bash
     - name: Push latest tag
       if: ${{ inputs.publish-latest == 'true' }}
