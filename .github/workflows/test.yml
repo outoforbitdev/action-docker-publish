@@ -22,7 +22,7 @@ jobs:
         uses: ./
         id: dockerpublish
         with:
-          docker-username: ${{ secrets.DOCKER_USERNAME }}
+          docker-username: ${{ vars.DOCKER_USERNAME }}
           docker-token: ${{ secrets.DOCKER_TOKEN }}
           image-name: ${{ vars.IMAGE_NAME }}
           image-tag: test-tag
@@ -38,7 +38,7 @@ jobs:
         uses: ./
         id: dockerpublish
         with:
-          docker-username: ${{ secrets.DOCKER_USERNAME }}
+          docker-username: ${{ vars.DOCKER_USERNAME }}
           docker-token: ${{ secrets.DOCKER_TOKEN }}
           image-name: ${{ vars.IMAGE_NAME }}
           image-tag: test-tag
