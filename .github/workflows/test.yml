@@ -12,21 +12,35 @@ on:
       - dev
       - staging
 jobs:
-  docker-publish:
+  docker-publish-dry:
     runs-on: ubuntu-latest
     name: Test Publish Image
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Test Publish Image
+      - name: Test Publish Image Dry Run
         uses: ./
         id: dockerpublish
         with:
           docker-username: ${{ secrets.DOCKER_USERNAME }}
           docker-token: ${{ secrets.DOCKER_TOKEN }}
           image-name: ${{ vars.IMAGE_NAME }}
-          image-tag: example-tag
+          image-tag: test-tag
           dry-run: true
+  docker-publish:
+    runs-on: ubuntu-latest
+    name: Test Publish Image
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Test Publish Image Dry Run
+        uses: ./
+        id: dockerpublish
+        with:
+          docker-username: ${{ secrets.DOCKER_USERNAME }}
+          docker-token: ${{ secrets.DOCKER_TOKEN }}
+          image-name: ${{ vars.IMAGE_NAME }}
+          image-tag: test-tag
   semantic-release:
     runs-on: ubuntu-latest
     name: Test Release
