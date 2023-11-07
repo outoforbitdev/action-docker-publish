@@ -41,18 +41,18 @@ runs:
       run: docker build -t ${{inputs.image-name}}:${{inputs.image-tag}}--$(git rev-parse --short HEAD) .
       shell: bash
     - name: Build latest tag
-      if: ${{ inputs.publish-latest == "true" }}
+      if: ${{ inputs.publish-latest == 'true' }}
       run: docker build -t latest .
       shell: bash
     - name: Push short tag
-      if: ${{ inputs.dry-run == "false" }}
+      if: ${{ inputs.dry-run == 'false' }}
       run: docker image push ${{inputs.image-name}}:${{inputs.image-tag}}
       shell: bash
     - name: Push sha tag
-      if: ${{ inputs.dry-run == "false" }}
+      if: ${{ inputs.dry-run == 'false' }}
       run: docker image push ${{inputs.image-name}}:${{inputs.image-tag}}--$(git rev-parse --short HEAD)
       shell: bash
     - name: Push latest tag
-      if: ${{ inputs.publish-latest == "true" }}
+      if: ${{ inputs.publish-latest == 'true' }}
       run: docker image push latest
       shell: bash
