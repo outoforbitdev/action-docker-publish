@@ -36,6 +36,7 @@ runs:
       shell: bash
     - name: Set image name
       run: echo "IMAGE_NAME=${{inputs.docker-username}}/${{inputs.image-name}}" >> "$GITHUB_ENV"
+      shell: bash
     - name: Set short tag
       run: echo "SHORT_TAG=${IMAGE_NAME}:${{inputs.image-tag}}" >> "$GITHUB_ENV"
       shell: bash
