@@ -1,3 +1,12 @@
+# [1.2.0-staging.7](https://github.com/outoforbitdev/action-docker-publish/compare/v1.2.0-staging.6...v1.2.0-staging.7) (2023-11-07)
+
+
+### Bug Fixes
+
+* build latest tag ([#26](https://github.com/outoforbitdev/action-docker-publish/issues/26)) ([1256817](https://github.com/outoforbitdev/action-docker-publish/commit/12568171aa369cd53250c7e7db0e28006ac0103f))
+* set correct latest tag ([877ec73](https://github.com/outoforbitdev/action-docker-publish/commit/877ec739e95ed8dc139c2019e663d2d4f3860b4e))
+* treat booleans as strings ([#24](https://github.com/outoforbitdev/action-docker-publish/issues/24)) ([3cdafa3](https://github.com/outoforbitdev/action-docker-publish/commit/3cdafa3b009d561723b94cb1b2792bc08a5ffe8b))
+
 # [1.2.0-staging.6](https://github.com/outoforbitdev/action-docker-publish/compare/v1.2.0-staging.5...v1.2.0-staging.6) (2023-11-03)
 
 
