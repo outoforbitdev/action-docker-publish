@@ -1,3 +1,10 @@
+# [1.2.0-staging.8](https://github.com/outoforbitdev/action-docker-publish/compare/v1.2.0-staging.7...v1.2.0-staging.8) (2023-11-07)
+
+
+### Bug Fixes
+
+* use image name ([#27](https://github.com/outoforbitdev/action-docker-publish/issues/27)) ([7500c0a](https://github.com/outoforbitdev/action-docker-publish/commit/7500c0a2b4d6dc299907b6b95e8d87407cc9423f))
+
 # [1.2.0-staging.7](https://github.com/outoforbitdev/action-docker-publish/compare/v1.2.0-staging.6...v1.2.0-staging.7) (2023-11-07)
 
 
