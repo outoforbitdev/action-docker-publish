@@ -54,17 +54,9 @@ runs:
       shell: bash
     - name: Build latest tag
       if: ${{ inputs.publish-latest == 'true' }}
-      run: docker build -t latest .
+      run: docker build -t $LATEST_TAG .
       shell: bash
-    - name: Push short tag
+    - name: Push all tags
       if: ${{ inputs.dry-run == 'false' }}
-      run: docker image push $SHORT_TAG
-      shell: bash
-    - name: Push sha tag
-      if: ${{ inputs.dry-run == 'false' }}
-      run: docker image push $SHA_TAG
-      shell: bash
-    - name: Push latest tag
-      if: ${{ inputs.publish-latest == 'true' }}
-      run: docker image push $LATEST_TAG
+      run: docker image push --all-tags $IMAGE_NAME
       shell: bash
