@@ -6,11 +6,6 @@ on:
       - opened
       - reopened
       - synchronize
-    branches:
-      - main
-      - beta
-      - dev
-      - staging
 jobs:
   docker-publish-dry:
     runs-on: ubuntu-latest
