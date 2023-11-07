@@ -35,10 +35,10 @@ runs:
       run: docker login -u ${{inputs.docker-username}} -p ${{inputs.docker-token}}
       shell: bash
     - name: Set short tag
-      run: export SHORT_TAG=${{inputs.docker-username}}/${{inputs.image-name}}:${{inputs.image-tag}}
+      run: echo "SHORT_TAG=${{inputs.docker-username}}/${{inputs.image-name}}:${{inputs.image-tag}}" >> "$GITHUB_ENV"
       shell: bash
     - name: Set sha tag
-      run: export SHA_TAG='${SHORT_TAG}--$(git rev-parse --short HEAD)'
+      run: echo "SHA_TAG=${SHORT_TAG}--$(git rev-parse --short HEAD)" >> "$GITHUB_ENV"
       shell: bash
     - name: Build short tag
       run: docker build -t $SHORT_TAG .
