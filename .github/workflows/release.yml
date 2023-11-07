@@ -18,11 +18,11 @@ jobs:
         uses: ./
         id: dockerpublish
         with:
-          docker-username: ${{ secrets.DOCKER_USERNAME }}
+          docker-username: ${{ vars.DOCKER_USERNAME }}
           docker-token: ${{ secrets.DOCKER_TOKEN }}
           image-name: ${{ vars.IMAGE_NAME }}
           image-tag: example-tag
-          dry-run: true
+          publish-latest: true
   semantic-release:
     runs-on: ubuntu-latest
     name: Publish Release
