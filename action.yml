@@ -34,11 +34,17 @@ runs:
     - name: Docker login
       run: docker login -u ${{inputs.docker-username}} -p ${{inputs.docker-token}}
       shell: bash
+    - name: Set image name
+      run: echo "IMAGE_NAME=${{inputs.docker-username}}/${{inputs.image-name}}" >> "$GITHUB_ENV"
+      shell: bash
     - name: Set short tag
-      run: echo "SHORT_TAG=${{inputs.docker-username}}/${{inputs.image-name}}:${{inputs.image-tag}}" >> "$GITHUB_ENV"
+      run: echo "SHORT_TAG=${IMAGE_NAME}:${{inputs.image-tag}}" >> "$GITHUB_ENV"
       shell: bash
     - name: Set sha tag
       run: echo "SHA_TAG=${SHORT_TAG}--$(git rev-parse --short HEAD)" >> "$GITHUB_ENV"
+      shell: bash
+    - name: Set latest tag
+      run: echo "LATEST_TAG=${IMAGE_NAME}:latest" >> "$GITHUB_ENV"
       shell: bash
     - name: Build short tag
       run: docker build -t $SHORT_TAG .
@@ -60,5 +66,5 @@ runs:
       shell: bash
     - name: Push latest tag
       if: ${{ inputs.publish-latest == 'true' }}
-      run: docker image push latest
+      run: docker image push $LATEST_TAG
       shell: bash
