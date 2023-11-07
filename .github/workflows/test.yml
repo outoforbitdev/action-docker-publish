@@ -42,6 +42,7 @@ jobs:
           docker-token: ${{ secrets.DOCKER_TOKEN }}
           image-name: ${{ vars.IMAGE_NAME }}
           image-tag: test-tag
+          publish-latest: true
   semantic-release:
     runs-on: ubuntu-latest
     name: Test Release
