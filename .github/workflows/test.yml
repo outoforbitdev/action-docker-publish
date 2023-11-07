@@ -6,11 +6,6 @@ on:
       - opened
       - reopened
       - synchronize
-    branches:
-      - main
-      - beta
-      - dev
-      - staging
 jobs:
   docker-publish-dry:
     runs-on: ubuntu-latest
@@ -56,7 +51,7 @@ jobs:
         with:
           persist-credentials: false
       - name: Semantic Release
-        uses: outoforbitdev/action-semantic-release@v1.3.5
+        uses: outoforbitdev/action-semantic-release@v1.3.6
         id: semanticrelease
         with:
           github-token: ${{ secrets.RELEASE_TOKEN }}
