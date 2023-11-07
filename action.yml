@@ -55,5 +55,5 @@ runs:
       shell: bash
     - name: Push all tags
       if: ${{ inputs.dry-run == 'false' }}
-      run: docker image push --all-tags $IMAGE_NAME
+      run: docker image push --all-tags ${{inputs.image-name}}
       shell: bash
