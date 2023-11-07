@@ -40,6 +40,9 @@ runs:
     - name: Set sha tag
       run: echo "SHA_TAG=${SHORT_TAG}--$(git rev-parse --short HEAD)" >> "$GITHUB_ENV"
       shell: bash
+    - name: Set latest tag
+      run: echo "LATEST_TAG=${{inputs.docker-username}}/${{inputs.image-name}}:latest" >> "$GITHUB_ENV"
+      shell: bash
     - name: Build short tag
       run: docker build -t $SHORT_TAG .
       shell: bash
@@ -60,5 +63,5 @@ runs:
       shell: bash
     - name: Push latest tag
       if: ${{ inputs.publish-latest == 'true' }}
-      run: docker image push latest
+      run: docker image push $LATEST_TAG
       shell: bash

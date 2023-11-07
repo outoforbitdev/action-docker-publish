@@ -21,7 +21,7 @@ jobs:
           docker-username: ${{ vars.DOCKER_USERNAME }}
           docker-token: ${{ secrets.DOCKER_TOKEN }}
           image-name: ${{ vars.IMAGE_NAME }}
-          image-tag: example-tag
+          image-tag: test-tag
           publish-latest: true
   semantic-release:
     runs-on: ubuntu-latest
