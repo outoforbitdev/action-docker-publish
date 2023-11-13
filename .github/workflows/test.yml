@@ -12,7 +12,7 @@ jobs:
     name: Test Dry Run
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Test Publish Image Dry Run
         uses: ./
         id: dockerpublish
@@ -28,7 +28,7 @@ jobs:
     needs: docker-publish-dry
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Test Publish Image
         uses: ./
         id: dockerpublish
