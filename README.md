@@ -33,6 +33,7 @@ GitHub Action for publishing a Docker image.
 * `dry-run`: Optional. Flag for whether to actually publish the image. Defaults to `false`
 * `publish-latest`: Optional. Flag for whether to publish the image with the `latest` flag. Defaults to `false`
 * `build-command`: Optional. Full command to build the image. Defaults to `docker build`
+* `dockerfile-path`: Optional. Path to the directory with the Dockerfile. Defaults to `.`
 
 ### Example
 ```yml
@@ -52,4 +53,5 @@ docker-test:
           image-tag: example-tag
           publish-latest: true
           build-command: docker build --build-arg EXAMPLE_ARG="example"
+          dockerfile-path: ./path/to/dockerfile
 ```

@@ -25,6 +25,10 @@ inputs:
     description: "Full command to build the image"
     required: false
     default: "docker build"
+  dockerfile-location:
+    description: "Path to the directory with the Dockerfile"
+    required: false
+    default: "."
 outputs:
   tag:
     description: "The tag that was published"
@@ -48,14 +52,14 @@ runs:
       run: echo "LATEST_TAG=${{inputs.image-name}}:latest" >> "$GITHUB_ENV"
       shell: bash
     - name: Build short tag
-      run: ${{ inputs.build-command }} -t $SHORT_TAG .
+      run: ${{ inputs.build-command }} -t $SHORT_TAG ${{ inputs.dockerfile-path }}
       shell: bash
     - name: Push short tag
       if: ${{ inputs.dry-run == 'false' }}
       run: docker image push $SHORT_TAG
       shell: bash
     - name: Build sha tag
-      run: ${{ inputs.build-command }} -t $SHA_TAG .
+      run: ${{ inputs.build-command }} -t $SHA_TAG ${{ inputs.dockerfile-path }}
       shell: bash
     - name: Push sha tag
       if: ${{ inputs.dry-run == 'false' }}
@@ -63,7 +67,7 @@ runs:
       shell: bash
     - name: Build latest tag
       if: ${{ inputs.publish-latest == 'true' }}
-      run: ${{ inputs.build-command }} -t $LATEST_TAG .
+      run: ${{ inputs.build-command }} -t $LATEST_TAG ${{ inputs.dockerfile-path }}
       shell: bash
     - name: Push latest tag
       if: ${{ inputs.dry-run == 'false' && inputs.publish-latest == 'true' }}
