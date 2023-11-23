@@ -41,7 +41,7 @@ docker-test:
     name: Publish Image
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Publish Image
         uses: outoforbitdev/action-docker-publish@v1.2.0
         id: dockerpublish
