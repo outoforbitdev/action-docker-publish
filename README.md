@@ -30,11 +30,12 @@ GitHub Action for publishing a Docker image.
 * `docker-token`: Required. The token for the docker account used to publish
 * `image-name`: Required. The name (repository) of the image being published
 * `image-tag`: Required. The tag of the image being published
-* `dry-run`: Optional. Flag for whether to actually publish the image. Defaults to false
-* `publish-latest`: Optional. Flag for whether to publish the image with the `latest` flag
+* `dry-run`: Optional. Flag for whether to actually publish the image. Defaults to `false`
+* `publish-latest`: Optional. Flag for whether to publish the image with the `latest` flag. Defaults to `false`
+* `build-command`: Optional. Full command to build the image. Defaults to `docker build`
 
 ### Example
-```
+```yml
 docker-test:
     runs-on: ubuntu-latest
     name: Publish Image
@@ -48,5 +49,7 @@ docker-test:
           docker-username: ${{ secrets.DOCKER_USERNAME }}
           docker-token: ${{ secrets.DOCKER_TOKEN }}
           image-name: ${{ vars.IMAGE_NAME }}
-          image-tag: latest
+          image-tag: example-tag
+          publish-latest: true
+          build-command: docker build --build-arg EXAMPLE_ARG="example"
 ```
