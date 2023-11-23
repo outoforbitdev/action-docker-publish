@@ -8,7 +8,7 @@ on:
       - dev
       - staging
 jobs:
-  docker-publish:
+  test:
     runs-on: ubuntu-latest
     name: Test Publish Image
     steps:
@@ -23,10 +23,11 @@ jobs:
           image-name: ${{ vars.IMAGE_NAME }}
           image-tag: test-tag
           publish-latest: true
-  semantic-release:
+          build-command: docker build --build-arg EXAMPLE="example"
+  release:
     runs-on: ubuntu-latest
     name: Publish Release
-    needs: docker-publish
+    needs: test
     outputs:
       versionReleased: ${{steps.semanticrelease.outputs.version-released}}
       version: ${{steps.semanticrelease.outputs.next-version}}
@@ -40,3 +41,4 @@ jobs:
         id: semanticrelease
         with:
           github-token: ${{ secrets.RELEASE_TOKEN }}
+          skip-changelog: ${{ github.ref_name != 'main' }}

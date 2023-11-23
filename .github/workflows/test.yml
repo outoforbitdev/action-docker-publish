@@ -1,4 +1,4 @@
-name: Test Release
+name: Test Action
 permissions: read-all
 on:
   pull_request:
@@ -7,25 +7,9 @@ on:
       - reopened
       - synchronize
 jobs:
-  docker-publish-dry:
-    runs-on: ubuntu-latest
-    name: Test Dry Run
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: Test Publish Image Dry Run
-        uses: ./
-        id: dockerpublish
-        with:
-          docker-username: ${{ vars.DOCKER_USERNAME }}
-          docker-token: ${{ secrets.DOCKER_TOKEN }}
-          image-name: ${{ vars.IMAGE_NAME }}
-          image-tag: test-tag
-          dry-run: true
-  docker-publish:
+  test:
     runs-on: ubuntu-latest
     name: Test Publish Image
-    needs: docker-publish-dry
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -38,21 +22,4 @@ jobs:
           image-name: ${{ vars.IMAGE_NAME }}
           image-tag: test-tag
           publish-latest: true
-  semantic-release:
-    runs-on: ubuntu-latest
-    name: Test Release
-    needs: docker-publish
-    outputs:
-      versionReleased: ${{steps.semanticrelease.outputs.version-released}}
-      version: ${{steps.semanticrelease.outputs.next-version}}
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          persist-credentials: false
-      - name: Semantic Release
-        uses: outoforbitdev/action-semantic-release@v1.3.6
-        id: semanticrelease
-        with:
-          github-token: ${{ secrets.RELEASE_TOKEN }}
-          dry-run: true
+          build-command: docker build --build-arg EXAMPLE="example"
