@@ -1,3 +1,10 @@
+# [2.1.0-staging.2](https://github.com/outoforbitdev/action-docker-publish/compare/v2.1.0-staging.1...v2.1.0-staging.2) (2023-11-23)
+
+
+### Features
+
+* support custom dockerfile location ([75e2c3b](https://github.com/outoforbitdev/action-docker-publish/commit/75e2c3bd8ec38200abc87b90e291c4d908d06eae))
+
 # [2.1.0-staging.1](https://github.com/outoforbitdev/action-docker-publish/compare/v2.0.0...v2.1.0-staging.1) (2023-11-23)
 
 
