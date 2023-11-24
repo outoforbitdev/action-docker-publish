@@ -1,4 +1,4 @@
-name: "action-semantic-release"
+name: "action-docker-publish"
 description: "Automatically release a new version on GitHub"
 inputs:
   docker-username:
