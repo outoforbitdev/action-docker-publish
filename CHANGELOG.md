@@ -1,3 +1,10 @@
+# [2.1.0](https://github.com/outoforbitdev/action-docker-publish/compare/v2.0.0...v2.1.0) (2023-11-24)
+
+
+### Features
+
+* support custom build commands ([2ade7d2](https://github.com/outoforbitdev/action-docker-publish/commit/2ade7d215d41c1266f87a44a1066fda0f626262c))
+
 # [2.0.0](https://github.com/outoforbitdev/action-docker-publish/compare/v1.1.2...v2.0.0) (2023-11-07)
 
 
