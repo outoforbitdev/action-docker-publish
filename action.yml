@@ -1,4 +1,4 @@
-name: "action-semantic-release"
+name: "action-docker-publish"
 description: "Automatically release a new version on GitHub"
 inputs:
   docker-username:
@@ -21,6 +21,14 @@ inputs:
     description: "Flag for whether to publish the image with the 'latest' flag"
     required: false
     default: "false"
+  build-command:
+    description: "Full command to build the image"
+    required: false
+    default: "docker build"
+  dockerfile-path:
+    description: "Path to the directory with the Dockerfile"
+    required: false
+    default: "."
 outputs:
   tag:
     description: "The tag that was published"
@@ -44,16 +52,24 @@ runs:
       run: echo "LATEST_TAG=${{inputs.image-name}}:latest" >> "$GITHUB_ENV"
       shell: bash
     - name: Build short tag
-      run: docker build -t $SHORT_TAG .
+      run: ${{ inputs.build-command }} -t $SHORT_TAG ${{ inputs.dockerfile-path }}
+      shell: bash
+    - name: Push short tag
+      if: ${{ inputs.dry-run == 'false' }}
+      run: docker image push $SHORT_TAG
       shell: bash
     - name: Build sha tag
-      run: docker build -t $SHA_TAG .
+      run: ${{ inputs.build-command }} -t $SHA_TAG ${{ inputs.dockerfile-path }}
+      shell: bash
+    - name: Push sha tag
+      if: ${{ inputs.dry-run == 'false' }}
+      run: docker image push $SHA_TAG
       shell: bash
     - name: Build latest tag
       if: ${{ inputs.publish-latest == 'true' }}
-      run: docker build -t $LATEST_TAG .
+      run: ${{ inputs.build-command }} -t $LATEST_TAG ${{ inputs.dockerfile-path }}
       shell: bash
-    - name: Push all tags
-      if: ${{ inputs.dry-run == 'false' }}
-      run: docker image push --all-tags ${{inputs.image-name}}
+    - name: Push latest tag
+      if: ${{ inputs.dry-run == 'false' && inputs.publish-latest == 'true' }}
+      run: docker image push $LATEST_TAG
       shell: bash
