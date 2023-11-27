@@ -54,11 +54,8 @@ runs:
     - name: Set latest tag
       run: echo "LATEST_TAG=${{inputs.image-name}}:latest" >> "$GITHUB_ENV"
       shell: bash
-    - name: Set build args
-      run: echo 'args=${${{inputs.build-args}}//,"--build-arg ")' >> "$GITHUB_ENV"
-      shell: bash
     - name: Set build command
-      run: echo "BUILD_COMMAND='docker buildx build --platform linux/amd64,linux/arm64/v8,linux/arm/v7 $args'" >> "$GITHUB_ENV"
+      run: echo "BUILD_COMMAND='docker buildx build --platform linux/amd64,linux/arm64/v8,linux/arm/v7 ${{inputs.build-args}}'" >> "$GITHUB_ENV"
       shell: bash
     - name: Build short tag
       run: $BUILD_COMMAND -t $SHORT_TAG ${{ inputs.dockerfile-path }}
