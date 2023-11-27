@@ -22,6 +22,6 @@ jobs:
           image-name: ${{ vars.IMAGE_NAME }}
           image-tag: test-tag
           publish-latest: true
-          build-args: >-
-            --build-arg EXAMPLE="example"
-            --build-arg OTHER_EXAMPLE="another_example"
+          # build-args: >-
+          #   --build-arg EXAMPLE="example"
+          #   --build-arg OTHER_EXAMPLE="another_example"
