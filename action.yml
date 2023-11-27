@@ -63,7 +63,7 @@ runs:
       shell: bash
     - name: Set tag string
       if: ${{ inputs.publish-latest == 'true' }}
-      run: echo "TAG_LIST=$SHORT_TAG,$SHA_TAG,$LATEST_TAG"
+      run: echo "TAG_LIST=$SHORT_TAG,$SHA_TAG,$LATEST_TAG" >> "$GITHUB_ENV"
       shell: bash
     - name: Set tag string
       if: ${{ inputs.publish-latest == 'false' }}
