@@ -26,7 +26,7 @@ inputs:
     required: false
     default: "."
   build-args:
-    description: "Comma-delimited list of build args in the form 'ARG_ONE=value,ARG_TWO=value"
+    description: "List of build args in the form 'ARG_ONE=value,ARG_TWO=value"
     required: false
     default: ""
   platforms:
@@ -72,6 +72,7 @@ runs:
     - name: Build and push
       uses: docker/build-push-action@v5
       with:
+        build-args: ${{ inputs.build-args }}
         context: ${{ inputs.dockerfile-path }}
         platforms: ${{ inputs.platforms }}
         push: ${{ inputs.dry-run == 'false' }}
