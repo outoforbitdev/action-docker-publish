@@ -55,20 +55,20 @@ runs:
       run: echo "LATEST_TAG=${{inputs.image-name}}:latest" >> "$GITHUB_ENV"
       shell: bash
     - name: Set build args
-      run: echo 'args=$(echo "${{inputs.build-args}}" | sed "s/,/ --build-arg /")' >> "$GITHUB_ENV"
+      run: echo 'args=${${{inputs.build-args}}//,"--build-arg ")' >> "$GITHUB_ENV"
       shell: bash
     - name: Set build command
       run: echo "BUILD_COMMAND='docker buildx build --platform linux/amd64,linux/arm64/v8,linux/arm/v7 $args'" >> "$GITHUB_ENV"
       shell: bash
     - name: Build short tag
-      run: ${{ inputs.build-command }} -t $SHORT_TAG ${{ inputs.dockerfile-path }}
+      run: $BUILD_COMMAND -t $SHORT_TAG ${{ inputs.dockerfile-path }}
       shell: bash
     - name: Push short tag
       if: ${{ inputs.dry-run == 'false' }}
       run: docker image push $SHORT_TAG
       shell: bash
     - name: Build sha tag
-      run: ${{ inputs.build-command }} -t $SHA_TAG ${{ inputs.dockerfile-path }}
+      run: $BUILD_COMMAND -t $SHA_TAG ${{ inputs.dockerfile-path }}
       shell: bash
     - name: Push sha tag
       if: ${{ inputs.dry-run == 'false' }}
@@ -76,7 +76,7 @@ runs:
       shell: bash
     - name: Build latest tag
       if: ${{ inputs.publish-latest == 'true' }}
-      run: ${{ inputs.build-command }} -t $LATEST_TAG ${{ inputs.dockerfile-path }}
+      run: $BUILD_COMMAND -t $LATEST_TAG ${{ inputs.dockerfile-path }}
       shell: bash
     - name: Push latest tag
       if: ${{ inputs.dry-run == 'false' && inputs.publish-latest == 'true' }}
