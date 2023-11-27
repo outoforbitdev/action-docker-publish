@@ -22,4 +22,4 @@ jobs:
           image-name: ${{ vars.IMAGE_NAME }}
           image-tag: test-tag
           publish-latest: true
-          build-command: docker build --build-arg EXAMPLE="example"
+          build-args: EXAMPLE="example",OTHER_EXAMPLE="another_example"
