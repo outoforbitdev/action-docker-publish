@@ -39,7 +39,7 @@ outputs:
   sha-tag:
     description: "The sha-specific tag that was published"
 runs:
-  using: 'composite'
+  using: "composite"
   steps:
     - name: Checkout
       uses: actions/checkout@v4
