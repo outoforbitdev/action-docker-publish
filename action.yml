@@ -53,10 +53,14 @@ runs:
         username: ${{ inputs.docker-username }}
         password: ${{ inputs.docker-token }}
     - name: Set short tag
-      run: echo "SHORT_TAG=${{inputs.image-name}}:${{inputs.image-tag}}" >> "$GITHUB_ENV"
+      run: >-
+        echo "SHORT_TAG=${{inputs.image-name}}:${{inputs.image-tag}}" >>
+        "$GITHUB_ENV"
       shell: bash
     - name: Set sha tag
-      run: echo "SHA_TAG=${SHORT_TAG}--$(git rev-parse --short HEAD)" >> "$GITHUB_ENV"
+      run: >-
+        echo "SHA_TAG=${SHORT_TAG}--$(git rev-parse --short HEAD)" >>
+        "$GITHUB_ENV"
       shell: bash
     - name: Set latest tag
       run: echo "LATEST_TAG=${{inputs.image-name}}:latest" >> "$GITHUB_ENV"
