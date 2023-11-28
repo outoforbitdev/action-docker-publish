@@ -71,7 +71,7 @@ runs:
       shell: bash
     - name: Set tag string
       if: ${{ inputs.publish-latest == 'false' }}
-      run: echo "TAG_LIST=$SHORT_TAG,$SHA_TAG"
+      run: echo "TAG_LIST=$SHORT_TAG,$SHA_TAG" >> "$GITHUB_ENV"
       shell: bash
     - name: Build and push
       uses: docker/build-push-action@v5
