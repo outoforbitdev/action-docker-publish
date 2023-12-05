@@ -2,7 +2,7 @@ name: Test Action
 permissions: read-all
 on:
   pull_request:
-    types: 
+    types:
       - opened
       - reopened
       - synchronize
@@ -17,9 +17,12 @@ jobs:
         uses: ./
         id: dockerpublish
         with:
+          dockerfile-path: ./.test
           docker-username: ${{ vars.DOCKER_USERNAME }}
           docker-token: ${{ secrets.DOCKER_TOKEN }}
           image-name: ${{ vars.IMAGE_NAME }}
           image-tag: test-tag
           publish-latest: true
-          build-command: docker build --build-arg EXAMPLE="example"
+          build-args: |
+            EXAMPLE="example"
+            OTHER_EXAMPLE="another_example"

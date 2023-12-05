@@ -21,55 +21,63 @@ inputs:
     description: "Flag for whether to publish the image with the 'latest' flag"
     required: false
     default: "false"
-  build-command:
-    description: "Full command to build the image"
-    required: false
-    default: "docker build"
   dockerfile-path:
     description: "Path to the directory with the Dockerfile"
     required: false
     default: "."
+  build-args:
+    description: "List of build args in the form 'ARG_ONE=value,ARG_TWO=value"
+    required: false
+    default: ""
+  platforms:
+    description: "Comma-delimited list of target platforms"
+    required: false
+    default: "linux/amd64,linux/arm64/v8,linux/arm/v7"
 outputs:
   tag:
     description: "The tag that was published"
   sha-tag:
     description: "The sha-specific tag that was published"
 runs:
-  using: 'composite'
+  using: "composite"
   steps:
     - name: Checkout
       uses: actions/checkout@v4
-    - name: Docker login
-      run: docker login -u ${{inputs.docker-username}} -p ${{inputs.docker-token}}
-      shell: bash
+    - name: Set up QEMU
+      uses: docker/setup-qemu-action@v3
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+    - name: Login to Docker Hub
+      uses: docker/login-action@v3
+      with:
+        username: ${{ inputs.docker-username }}
+        password: ${{ inputs.docker-token }}
     - name: Set short tag
-      run: echo "SHORT_TAG=${{inputs.image-name}}:${{inputs.image-tag}}" >> "$GITHUB_ENV"
+      run: >-
+        echo "SHORT_TAG=${{inputs.image-name}}:${{inputs.image-tag}}" >>
+        "$GITHUB_ENV"
       shell: bash
     - name: Set sha tag
-      run: echo "SHA_TAG=${SHORT_TAG}--$(git rev-parse --short HEAD)" >> "$GITHUB_ENV"
+      run: >-
+        echo "SHA_TAG=${SHORT_TAG}--$(git rev-parse --short HEAD)" >>
+        "$GITHUB_ENV"
       shell: bash
     - name: Set latest tag
       run: echo "LATEST_TAG=${{inputs.image-name}}:latest" >> "$GITHUB_ENV"
       shell: bash
-    - name: Build short tag
-      run: ${{ inputs.build-command }} -t $SHORT_TAG ${{ inputs.dockerfile-path }}
-      shell: bash
-    - name: Push short tag
-      if: ${{ inputs.dry-run == 'false' }}
-      run: docker image push $SHORT_TAG
-      shell: bash
-    - name: Build sha tag
-      run: ${{ inputs.build-command }} -t $SHA_TAG ${{ inputs.dockerfile-path }}
-      shell: bash
-    - name: Push sha tag
-      if: ${{ inputs.dry-run == 'false' }}
-      run: docker image push $SHA_TAG
-      shell: bash
-    - name: Build latest tag
+    - name: Set tag string
       if: ${{ inputs.publish-latest == 'true' }}
-      run: ${{ inputs.build-command }} -t $LATEST_TAG ${{ inputs.dockerfile-path }}
+      run: echo "TAG_LIST=$SHORT_TAG,$SHA_TAG,$LATEST_TAG" >> "$GITHUB_ENV"
       shell: bash
-    - name: Push latest tag
-      if: ${{ inputs.dry-run == 'false' && inputs.publish-latest == 'true' }}
-      run: docker image push $LATEST_TAG
+    - name: Set tag string
+      if: ${{ inputs.publish-latest == 'false' }}
+      run: echo "TAG_LIST=$SHORT_TAG,$SHA_TAG" >> "$GITHUB_ENV"
       shell: bash
+    - name: Build and push
+      uses: docker/build-push-action@v5
+      with:
+        build-args: ${{ inputs.build-args }}
+        context: ${{ inputs.dockerfile-path }}
+        platforms: ${{ inputs.platforms }}
+        push: ${{ inputs.dry-run == 'false' }}
+        tags: ${{ env.TAG_LIST }}

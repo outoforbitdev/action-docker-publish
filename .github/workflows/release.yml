@@ -18,12 +18,15 @@ jobs:
         uses: ./
         id: dockerpublish
         with:
+          dockerfile-path: ./.test
           docker-username: ${{ vars.DOCKER_USERNAME }}
           docker-token: ${{ secrets.DOCKER_TOKEN }}
           image-name: ${{ vars.IMAGE_NAME }}
           image-tag: test-tag
           publish-latest: true
-          build-command: docker build --build-arg EXAMPLE="example"
+          build-args: |
+            EXAMPLE="example"
+            OTHER_EXAMPLE="another_example"
   release:
     runs-on: ubuntu-latest
     name: Publish Release
