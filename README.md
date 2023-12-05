@@ -36,10 +36,11 @@ GitHub Action for publishing a Docker image.
 - `publish-latest`: Optional.
   Flag for whether to publish the image with the `latest` flag.
   Defaults to `false`
-- `build-command`: Optional. Full command to build the image.
-  Defaults to `docker build`
 - `dockerfile-path`: Optional. Path to the directory with the Dockerfile.
   Defaults to `.`
+- `build-args`: Optional. List of build args.
+- `platforms`: Optional. Comma-delimited list of target platforms.
+  Defaults to "linux/amd64,linux/arm64/v8,linux/arm/v7"
 
 ### Example
 
@@ -59,6 +60,7 @@ docker-test:
         image-name: ${{ vars.IMAGE_NAME }}
         image-tag: example-tag
         publish-latest: true
-        build-command: docker build --build-arg EXAMPLE_ARG="example"
-        dockerfile-path: ./path/to/dockerfile
+        build-args: |
+          EXAMPLE="example"
+          OTHER_EXAMPLE="another_example"
 ```
