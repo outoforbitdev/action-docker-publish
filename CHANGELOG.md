@@ -1,3 +1,15 @@
+# [3.0.0](https://github.com/outoforbitdev/action-docker-publish/compare/v2.1.0...v3.0.0) (2024-01-27)
+
+
+### Features
+
+* support multi-platform builds ([b004e82](https://github.com/outoforbitdev/action-docker-publish/commit/b004e826b718a6ecfe51aa9410973c9096fa2c35))
+
+
+### BREAKING CHANGES
+
+* Support multi-platform builds. This removes the `build-command` input in favor of separate `dockerfile-path` and `build-args` inputs.
+
 # [2.1.0](https://github.com/outoforbitdev/action-docker-publish/compare/v2.0.0...v2.1.0) (2023-11-24)
 
 
