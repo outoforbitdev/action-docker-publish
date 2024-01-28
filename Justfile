@@ -1,7 +1,6 @@
 install:
     yarn install
     yarn husky install
-    brew install yamllint
 
 rebuild-staging:
     git fetch
