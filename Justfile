@@ -1,6 +1,9 @@
 install:
     yarn install
     yarn husky install
+    yarn husky init
+    echo "npx --no -- commitlint --edit ${1} --config ./.linters/config/commitlint.config.js" > .husky/commit-msg
+    echo "just lint" > .husky/pre-commit
 
 rebuild-staging:
     git fetch

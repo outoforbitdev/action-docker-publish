@@ -17,5 +17,8 @@
     "config": {
       "no-inline-html": false
     }
+  },
+  "scripts": {
+    "prepare": "husky"
   }
 }
