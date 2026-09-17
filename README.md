@@ -1,5 +1,11 @@
 # action-docker-publish
 
+> **Retired.** This action has been superseded by
+> [`reusable-workflows-library`](https://github.com/outoforbitdev/reusable-workflows-library)'s
+> `publish-docker.yml` reusable workflow, which additionally supports
+> publishing to GitHub Container Registry alongside Docker Hub. This
+> repository is archived and kept for historical reference only.
+
 <p align="center">
   <!-- <a href="https://github.com/outoforbitdev/action-docker-publish/discussions">
     <img alt="Join the community on GitHub Discussions" src="https://img.shields.io/badge/Join%20the%20community-on%20GitHub%20Discussions-blue">
